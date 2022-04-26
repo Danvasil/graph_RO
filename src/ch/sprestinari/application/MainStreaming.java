@@ -7,6 +7,8 @@ import ch.sprestinari.business.StreamingSite;
 import ch.sprestinari.model.Graph;
 import ch.sprestinari.model.Node;
 
+import java.util.List;
+
 public class MainStreaming {
     public static void main(String[] args) {
         Graph grapheFriendshipAndStreaming = new Graph("amitie");
@@ -51,14 +53,30 @@ public class MainStreaming {
         albert.watch("s6",netflix,50);
 
         System.out.println(grapheFriendshipAndStreaming.toString());
+        System.out.println();
+        System.out.println("Q1");
         for (Node n:  grapheFriendshipAndStreaming.limitedWidthWayTyped(grapheFriendshipAndStreaming.findNode("Paul"), IsWatching.class, 1)) {
-            System.out.println(n.getName());
+            System.out.print(n.getName()+", ");
         }
 
-        System.out.println(grapheFriendshipAndStreaming.toString());
+        System.out.println();
+
+        System.out.println("Q2");
         for (Node n:  grapheFriendshipAndStreaming.limitedWidthWayTyped(grapheFriendshipAndStreaming.findNode("Paul"), IsFriend.class, 2)) {
-            for (Node m: grapheFriendshipAndStreaming.limitedWidthWayTyped(grapheFriendshipAndStreaming.findNode(n.getName()), IsWatching.class, 1))
-            System.out.println(m.getName());
+            if (!grapheFriendshipAndStreaming.limitedWidthWayTyped(n, IsWatching.class, 1).isEmpty())
+                {System.out.print(n.getName() +", ");}
+        }
+
+        System.out.println();
+
+        System.out.println("Q3");
+
+        for (Node p: (List<Node>)grapheFriendshipAndStreaming.limitedWidthWayTyped(grapheFriendshipAndStreaming.findNode("Paul"),IsFriend.class,1)){
+            if (((Person)p).getCity().equals("Neuchâtel")){
+                if ((grapheFriendshipAndStreaming.limitedWidthWayTyped(p, IsWatching.class, 1)).contains((StreamingSite) grapheFriendshipAndStreaming.findNode("Amazon Prime Video"))){
+                    System.out.print(p.getName() + ", ");
+                }
+            }
         }
 
     }

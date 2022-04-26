@@ -26,4 +26,19 @@ public class Person extends Node {
       this.exitingEdgeList.putIfAbsent(edgeName, new IsWatching(edgeName, streamingSite,weight));
     }
 
+    public Date getBirth() {
+        return birth;
+    }
+
+    public void setBirth(Date birth) {
+        this.birth = birth;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 }
