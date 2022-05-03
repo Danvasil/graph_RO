@@ -1,9 +1,6 @@
 package ch.sprestinari.model;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Graph {
     private String name;
@@ -191,5 +188,44 @@ public class Graph {
         });
 
         return sb.toString();
+    }
+
+    private void dijkstra (Node start){
+        System.out.println("RUNNING DIJKSTRA...\n");
+        //variables temporaires de traitement
+        this.reInitAll();
+
+        Node current_n = null;
+        Node dest_n;
+        Edge tmp_edge;
+        Double current_w;
+        List<Node> priorityList = new ArrayList<Node>();
+        start.setDijkstraWeight(0);
+        priorityList.add(start);
+
+        while (!priorityList.isEmpty()){
+            Collections.sort(priorityList, new DijkstraComparator());
+            current_n = (Node) priorityList.remove(0);
+
+            TripletDijkstra triplet = new TripletDijkstra(current_n.getName(), current_n.getDijkstraWeight(), current_n.getDijkstraPred())
+            System.out.println(triplet);
+            start.addToVPCC(triplet);
+        }
+
+        for (Iterator ita = current_n.getExitingEdges().iterator(); ita.hasNext();){
+
+
+        }
+    }
+
+    private void reInitAll() {
+        List<Node> listNode = new ArrayList<Node>(nodeList.values());
+
+        for(Node n:listNode){
+            //MAX_VALUE = infini
+            n.setDijkstraWeight(Integer.MAX_VALUE);
+            n.setDijkstraPred(null);
+        }
+
     }
 }

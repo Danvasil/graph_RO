@@ -3,10 +3,13 @@ package ch.sprestinari.model;
 import java.util.*;
 
 public class Node {
+    private Integer dijkstraWeight;
+    private Node dijkstraPred;
     private String name;
     protected Map<String, Edge> exitingEdgeList = new HashMap<>();
     private boolean mark;
     private Integer level;
+    private Map<String, TripletDijkstra> vpcc;
 
     public Node(String name) {
         this.name = name;
@@ -61,6 +64,22 @@ public class Node {
         return this;
     }
 
+    public Integer getDijkstraWeight() {
+        return dijkstraWeight;
+    }
+
+    public void setDijkstraWeight(Integer dijkstraWeight) {
+        this.dijkstraWeight = dijkstraWeight;
+    }
+
+    public Node getDijkstraPred() {
+        return dijkstraPred;
+    }
+
+    public void setDijkstraPred(Node dijkstraPred) {
+        this.dijkstraPred = dijkstraPred;
+    }
+
     @Override
     public String toString() {
         var sb = new StringBuilder();
@@ -76,5 +95,9 @@ public class Node {
         sb.append("}");
 
         return sb.toString();
+    }
+
+    public void addToVPCC(TripletDijkstra tripletDijkstra) {
+        vpcc.put(tripletDijkstra.getName(), tripletDijkstra);
     }
 }
