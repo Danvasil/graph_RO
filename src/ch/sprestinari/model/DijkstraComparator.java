@@ -11,5 +11,5 @@ public class DijkstraComparator implements Comparator<Node> {
             else if(n1.getDijkstraWeight() < n2.getDijkstraWeight()) return 1;
             else return 0;
     */
-    }
+}
 

@@ -15,4 +15,3 @@ public class StreamingSite extends Node {
         this.url = url;
     }
 }
-

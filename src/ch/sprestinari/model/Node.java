@@ -107,7 +107,10 @@ public class Node {
         return sb.toString();
     }
 
-    public void addToVPCC(TripletDijkstra tripletDijkstra) {
-        vpcc.put(tripletDijkstra.getName(), tripletDijkstra);
+    public boolean nodeExistInVpcc(Node node) {
+        return null != this.vpcc.get(node.getName());
+    }
+    public void addToVPCC(TripletDijkstra triplet) {
+        this.vpcc.putIfAbsent(triplet.getName(), triplet);
     }
 }

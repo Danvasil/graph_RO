@@ -23,7 +23,7 @@ public class Person extends Node {
     }
 
     public void watch(String edgeName, StreamingSite streamingSite, Integer weight){
-      this.exitingEdgeList.putIfAbsent(edgeName, new IsWatching(edgeName, streamingSite,weight));
+        this.exitingEdgeList.putIfAbsent(edgeName, new IsWatching(edgeName, streamingSite,weight));
     }
 
     public Date getBirth() {

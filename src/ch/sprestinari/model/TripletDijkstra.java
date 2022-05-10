@@ -38,9 +38,9 @@ public class TripletDijkstra {
     @Override
     public String toString() {
         return "TripletDijkstra{" +
-                "name='" + name + '\'' +
-                ", dijkstraWeight=" + dijkstraWeight.intValue() +
-                ", dijkstraPred=" + dijkstraPred +
-                '}';
+            "name='" + name + '\'' +
+            ", dijkstraWeight=" + dijkstraWeight.intValue() +
+            ", dijkstraPred=" + dijkstraPred +
+            '}';
     }
 }

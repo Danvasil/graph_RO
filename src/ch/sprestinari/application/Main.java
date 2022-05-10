@@ -4,7 +4,7 @@ import ch.sprestinari.model.Graph;
 import ch.sprestinari.model.Node;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Graph g = new Graph("G1");
         g.addNode("A");
         g.addNode("B");
@@ -26,6 +26,8 @@ public class Main {
 
         g.dijkstra(g.findNode("A"));
         System.out.println(g);
+
+        g.printShortestWay(g.findNode("A"), g.findNode("B"));
 
     }
 }
