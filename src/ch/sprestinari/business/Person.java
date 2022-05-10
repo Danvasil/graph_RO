@@ -18,11 +18,11 @@ public class Person extends Node {
         this.city=city;
     }
 
-    public void addFriend(String edgeName, Person person, double weight){
+    public void addFriend(String edgeName, Person person, Integer weight){
         this.exitingEdgeList.putIfAbsent(edgeName, new IsFriend(edgeName, person,weight));
     }
 
-    public void watch(String edgeName, StreamingSite streamingSite, double weight){
+    public void watch(String edgeName, StreamingSite streamingSite, Integer weight){
       this.exitingEdgeList.putIfAbsent(edgeName, new IsWatching(edgeName, streamingSite,weight));
     }
 

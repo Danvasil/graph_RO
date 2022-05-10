@@ -23,5 +23,9 @@ public class Main {
         for (Node n: g.limitedWidthWay(a, 1)) {
             System.out.println(n.getName());
         }
+
+        g.dijkstra(g.findNode("A"));
+        System.out.println(g);
+
     }
 }

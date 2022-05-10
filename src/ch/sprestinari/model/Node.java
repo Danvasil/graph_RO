@@ -9,6 +9,16 @@ public class Node {
     protected Map<String, Edge> exitingEdgeList = new HashMap<>();
     private boolean mark;
     private Integer level;
+
+
+    public Map<String, TripletDijkstra> getVpcc() {
+        return vpcc;
+    }
+
+    public void setVpcc(Map<String, TripletDijkstra> vpcc) {
+        this.vpcc = vpcc;
+    }
+
     private Map<String, TripletDijkstra> vpcc;
 
     public Node(String name) {
@@ -19,12 +29,12 @@ public class Node {
         return exitingEdgeList.values();
     }
 
-    public void addExitingEdge(String edgeName, double weight, Node destination) {
+    public void addExitingEdge(String edgeName, Integer weight, Node destination) {
         exitingEdgeList.putIfAbsent(edgeName, new Edge(edgeName, weight, destination));
     }
 
     // Pas demandé par le prof
-    public void replaceExitingEdge(String edgeName, double weight, Node destination) {
+    public void replaceExitingEdge(String edgeName, Integer weight, Node destination) {
         if (exitingEdgeList.get(edgeName) != null) {
             exitingEdgeList.put(edgeName, new Edge(edgeName, weight, destination));
         }

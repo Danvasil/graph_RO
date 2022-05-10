@@ -2,10 +2,10 @@ package ch.sprestinari.model;
 
 public class Edge {
     private String name;
-    private double weight;
+    private Integer weight;
     private Node destination;
 
-    public Edge(String name, double weight, Node destination) {
+    public Edge(String name, Integer weight, Node destination) {
         this.name = name;
         this.weight = weight;
         this.destination = destination;
@@ -17,10 +17,14 @@ public class Edge {
 
     @Override
     public String toString() {
-        return String.format("(%s, %s, %.0f)", name, destination.getName(), weight);
+        return String.format("(%s, %s, %d)", name, destination.getName(), weight);
     }
 
     public String getName() {
         return name;
+    }
+
+    public Integer getWeight() {
+        return weight;
     }
 }

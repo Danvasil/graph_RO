@@ -39,7 +39,7 @@ public class TripletDijkstra {
     public String toString() {
         return "TripletDijkstra{" +
                 "name='" + name + '\'' +
-                ", dijkstraWeight=" + dijkstraWeight +
+                ", dijkstraWeight=" + dijkstraWeight.intValue() +
                 ", dijkstraPred=" + dijkstraPred +
                 '}';
     }

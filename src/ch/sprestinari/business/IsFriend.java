@@ -4,7 +4,7 @@ import ch.sprestinari.model.Edge;
 
 public class IsFriend extends Edge {
     //navigation uni-directionnelle
-    public IsFriend(String nom, Person personneDest, double i) {
+    public IsFriend(String nom, Person personneDest, Integer i) {
 // public Arc(String n, Noeud dest, Noeud nsrc, double p)
         super(nom, i, personneDest);
     }
