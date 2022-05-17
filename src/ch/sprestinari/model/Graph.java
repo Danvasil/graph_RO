@@ -1,5 +1,10 @@
 package ch.sprestinari.model;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class Graph {
@@ -179,6 +184,20 @@ public class Graph {
         nodes.forEach(node -> node.setLevel(null));
     }
 
+    @Override
+    public String toString() {
+        var sb = new StringBuilder();
+
+        sb.append("Graph: ").append(name).append("\n\n");
+
+        nodeList.forEach((k, node) -> {
+            sb.append(node);
+            sb.append("\n");
+        });
+
+        return sb.toString();
+    }
+
     public void dijkstra(Node start) {
         System.out.println("RUNNING DIJKSTRA...\n");
         //variables temporaires de traitement
@@ -262,18 +281,43 @@ public class Graph {
         System.out.println(sb.toString());
     }
 
-    @Override
-    public String toString() {
-        var sb = new StringBuilder();
-
-        sb.append("Graph: ").append(name).append("\n\n");
-
-        nodeList.forEach((k, node) -> {
-            sb.append(node);
-            sb.append("\n");
-        });
-
-        return sb.toString();
+    public static Graph copy(Graph g) throws IOException, ClassNotFoundException {
+        ByteArrayOutputStream bout = new ByteArrayOutputStream();
+        ObjectOutputStream cout = new ObjectOutputStream(bout);
+        cout.writeObject(g);byte[] bytes = bout.toByteArray();
+        ByteArrayInputStream bin = new ByteArrayInputStream(bytes);
+        ObjectInputStream cin= new ObjectInputStream(bin);
+        Graph clone = (Graph) cin.readObject();
+        clone.name = g.name + "_Copy";
+        return clone;
     }
 
+
+    public void triTopologique() throws CloneNotSupportedException, IOException, ClassNotFoundException {
+        var copy = Graph.copy(this);
+        this.miseEnRang.clear();
+        intrang = 0;
+        booleancycle = false;
+
+        while(copy.nodeList.isEmpty() == false && cycle==false ) {
+            copy.calculerDegres();
+            var currentRangeNode = new ArrayList<Node>();
+            Iterator it= copy.nodeList.values().iterator();
+
+            while(it.hasNext()) {
+                Node n = (Node) it.next();
+                if (n.getDegreIn() == 0) {
+                    //Ajouter au rang le noeuddu graphe (this) et non sa copie(copy)
+                    Node currentNode= this.findNode(n.getName());
+                    currentRangeNode.add(currentNode);
+                    it.remove();
+                }
+            }
+            if (currentRangeNode.isEmpty() && copy.nodeList.isEmpty() == false) {
+                cycle = true;
+            }
+            this.miseEnRang.put(rang, currentRangeNode);
+            rang++;
+        }
+    }
 }
