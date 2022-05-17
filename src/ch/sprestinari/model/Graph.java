@@ -179,20 +179,6 @@ public class Graph {
         nodes.forEach(node -> node.setLevel(null));
     }
 
-    @Override
-    public String toString() {
-        var sb = new StringBuilder();
-
-        sb.append("Graph: ").append(name).append("\n\n");
-
-        nodeList.forEach((k, node) -> {
-            sb.append(node);
-            sb.append("\n");
-        });
-
-        return sb.toString();
-    }
-
     public void dijkstra(Node start) {
         System.out.println("RUNNING DIJKSTRA...\n");
         //variables temporaires de traitement
@@ -275,4 +261,19 @@ public class Graph {
         sb.append(eol);
         System.out.println(sb.toString());
     }
+
+    @Override
+    public String toString() {
+        var sb = new StringBuilder();
+
+        sb.append("Graph: ").append(name).append("\n\n");
+
+        nodeList.forEach((k, node) -> {
+            sb.append(node);
+            sb.append("\n");
+        });
+
+        return sb.toString();
+    }
+
 }
